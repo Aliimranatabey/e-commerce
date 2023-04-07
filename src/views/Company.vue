@@ -72,7 +72,7 @@ export default {
   data: () => ({
     dialog: false,
     headers: [
-      { text: "Id", value: "id" },
+      // { text: "Id", value: "id" },
       { text: "Name", value: "name" },
       { text: "Url", value: "url" },
       { text: "Image", value: "image" },
@@ -96,22 +96,19 @@ export default {
   methods: {
     async getCompanyList() {
       const response = await this.axios.get("http://localhost:8080/company");
-      console.log(this.editedItem.dep.id);
+      console.log(response);
       //burada response içerisinde data olarak verilerin tutuldugunu gördük console da bundan dolayı response.data dedik eğer data içerisinde
       //de embeded olsaydı response.data.embeded olurddu
       this.companys = response.data;
     },
     async addCompany() {
-      await this.axios.post("http://localhost:8080/company/", this.editedItem);
+      await this.axios.post("http://localhost:8080/company", this.editedItem);
       this.getCompanyList();
     },
     async updateCompany() {
       console.log(this.editedItem);
-      await this.axios.put(
-        "http://localhost:8080/company/" + this.editedItem.id,
-        this.editedItem
-      );
-      this.getCompanyList();
+      await this.axios.put("http://localhost:8080/company/" + this.editedItem.id, this.editedItem)
+      this.getCompanyList()
     },
     saveCompany() {
       if (this.editedItem.id == null || this.editedItem.id == "") {

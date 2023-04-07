@@ -45,14 +45,14 @@
                     </v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.birthday"
-                        label="BIRTHDAY"
-                      >
-                    </v-text-field>
+                      <v-date-picker
+                      v-model="editedItem.birthday"
+                      label="BIRTHDAY">
+                    </v-date-picker>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                     <v-text-field
+                      type="password"
                       v-model="editedItem.password"
                       label="PASSWORD"
                     >
@@ -103,7 +103,7 @@ export default {
   data: () => ({
     dialog: false,
     headers: [
-      { text: "Id", value: "id" },
+      // { text: "Id", value: "id" },
       { text: "Name", value: "name" },
       { text: "Surname", value: "surname" },
       { text: "Email", value: "email" },
@@ -134,6 +134,7 @@ export default {
     methods: {
       async getCustomerList() {
         const response = await this.axios.get("http://localhost:8080/customer");
+        console.log(response);
         this.customers = response.data;
       },
       async getCompanyList() {
@@ -141,7 +142,7 @@ export default {
         this.companys = response.data;
       },
       async addCustomer() {
-        await this.axios.post("http://localhost:8080/customer/", this.editedItem);
+        await this.axios.post("http://localhost:8080/customer", this.editedItem);
         this.getCustomerList();
       },
       async updateCustomer() {
@@ -181,5 +182,6 @@ export default {
   };
 
 </script>
+
 <style scoped>
 </style>
