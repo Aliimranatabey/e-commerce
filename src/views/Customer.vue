@@ -48,7 +48,7 @@
                       <v-date-picker
                       v-model="editedItem.birthday"
                       label="BIRTHDAY">
-                    </v-date-picker>
+                      </v-date-picker>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                     <v-text-field
@@ -61,7 +61,8 @@
                     <v-col cols="12" sm="6" md="4">
                     <v-combobox
                         label="GENDER"
-                        :items="['MALE', 'FEMALE']"
+                        v-model="editedItem.gender"
+                        :items="['MALE','FEMALE']"
                     >
                     </v-combobox>
                     </v-col>
