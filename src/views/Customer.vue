@@ -1,16 +1,27 @@
 <template>
+  <!-- / v-container : Görünüm alanı maksimum genişlik boyutu kesme noktalarını kaldırır. -->
   <v-container>
+    <!-- headers(Başlıklar) : tablonun sütunlarını tanımlamak için kullanılır. Başlıklar, gövdenin üstündeki (ancak üst kısmın altındaki) bölümün tamamıdır, muhtemelen birden çok satırdır -->
+    <!-- items : Alt bileşenleri otomatik olarak oluşturmak için kullanılan bir dizi dizi veya nesne -->
+    <!-- sort-by : Sıralama düzeni için hangi öğe özelliğinin (veya özelliklerinin) kullanılması gerektiğini değiştirir. .syncDeğiştirici ile kullanılabilir -->
+    <!-- Yardımcı sınıflar, herhangi bir öğeye özel bir z-derinliği (elevation) atamanıza izin verir . -->
     <v-data-table
       :headers="headers"
       :items="customers"
       sort-by="id"
       class="elevation-3"
     >
+    <!-- v-slot: Adlandırılmış bir alanı iletmek için, yönergeyle birlikte bir öğe kullanmamız v-slotve ardından yuvanın adını bir argüman olarak iletmemiz gerekir v-slot -->
       <template v-slot:top>
+        <!-- Bileşen v-toolbar, genellikle sitede gezinmenin birincil kaynağı olduğundan, herhangi bir grafik kullanıcı arabirimi (GUI) için çok önemlidir. Araç çubuğu bileşeni, aşağıdakilerle birlikte harika çalışır: 
+        v-navigation-drawer and v-card -->
         <v-toolbar flat>
           <v-toolbar-title>CUSTOMER LIST</v-toolbar-title>
-          <v-divider class="mx-4" inset vertical></v-divider>
+          <!-- Bileşen v-divider, listelerin veya düzenlerin bölümlerini ayırmak için kullanılır. -->
+          <v-divider class="mx-4" insert vertical></v-divider>
+          <!-- v-spacer : Kök öğede kullanılan özel bir etiket belirtin -->
           <v-spacer></v-spacer>
+          <!-- v-dialog : Bileşen v-dialog, kullanıcıları belirli bir görev hakkında bilgilendirir ve kritik bilgiler içerebilir, kararlar gerektirebilir veya birden çok görev içerebilir. Diyalogları idareli kullanın çünkü bunlar kesintiye uğrar. -->
           <v-dialog v-model="dialog" max-width="500px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
