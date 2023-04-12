@@ -23,6 +23,7 @@
           <v-spacer></v-spacer>
           <!-- v-dialog : Bileşen v-dialog, kullanıcıları belirli bir görev hakkında bilgilendirir ve kritik bilgiler içerebilir, kararlar gerektirebilir veya birden çok görev içerebilir. Diyalogları idareli kullanın çünkü bunlar kesintiye uğrar. -->
           <v-dialog v-model="dialog" max-width="500px">
+            <!-- activator : VMenuactivatorkullanıcıların , belirli olaylar (örn. ) üzerine menüyü etkinleştiren/açan bileşen(ler)i içeren, adında slotlı bir şablon belirlemesine olanak tanır click. slota iletilen bir nesne aracılığıylaVMenu bu olaylar için dinleyiciler sağlar :activator -->
             <template v-slot:activator="{ on, attrs }">
               <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
                 New Customer
@@ -32,7 +33,6 @@
               <v-card-title>
                 <span class="text-h5">New Customer</span>
               </v-card-title>
-
               <v-card-text>
                 <v-container>
                   <v-row>
