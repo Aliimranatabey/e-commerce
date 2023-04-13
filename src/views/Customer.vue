@@ -29,14 +29,19 @@
                 New Customer
               </v-btn>
             </template>
+            <!-- v-card : v-card bileşeni, başlıklar, metin, resimler, simgeler ve daha fazlası için basit bir arabirim sağlayan v-sheet'in çok yönlü ve geliştirilmiş bir sürümüdür . -->
             <v-card>
               <v-card-title>
                 <span class="text-h5">New Customer</span>
               </v-card-title>
+              <!-- v-card-text : Kök öğede kullanılan özel bir etiket belirtin -->
               <v-card-text>
+                <!-- v-container : v-container, sitenizin içeriğini ortalama ve yatay olarak doldurma yeteneği sağlar . -->
                 <v-container>
+                  <!-- v-row : v-row, v-col için bir sarıcı bileşendir . İç sütunlarının düzenini ve akışını kontrol etmek için esnek özelliklerden yararlanır. 24 piksellik standart bir cilt payı kullanır. Bu, yoğun pervane ile azaltılabilir veya oluksuz tamamen çıkarılabilir. -->
                   <v-row>
                     <v-col cols="12" sm="6" md="4">
+                      <!-- v-text-field : v-text-field bileşeni, hem v-input hem de v-field bileşenlerini tek bir teklifte birleştiren çok yönlü bir <input type="text"> alanıdır . Diğer form girdileri için temel sağlayan yaygın olarak kullanılan bir öğedir; v-select , v-autocomplete , v-combobox gibi. -->
                       <v-text-field
                         v-model="editedItem.name"
                         label="NAME"
@@ -56,6 +61,7 @@
                     </v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
+                      <!-- v-date-picker : v-date-picker, birçok mevcut Vuetify bileşeninde kullanılabilen bağımsız bir bileşendir . Kullanıcıya tarih/ay seçimi için görsel bir sunum sunar. v-date-picker, ISO 8601 tarih dizilerini (YYYY-AA-GG) kabul eder. -->
                       <v-date-picker
                       v-model="editedItem.birthday"
                       label="BIRTHDAY">
@@ -70,6 +76,7 @@
                     </v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
+                    <!-- v-combobox : v-combobox bileşeni, kullanıcının sağlanan öğeler dizisinden değerleri seçmesine veya kendi değerini girmesine izin veren bir v-text alanıdır . -->
                     <v-combobox
                         label="GENDER"
                         v-model="editedItem.gender"
@@ -77,6 +84,7 @@
                     >
                     </v-combobox>
                     </v-col>
+                    <!-- v-select : Seçimlerin görüntüsünü çip olarak değiştirir -->
                     <v-select
                       v-model="editedItem.company"
                       :items="companys"
@@ -89,7 +97,6 @@
                   </v-row>
                 </v-container>
               </v-card-text>
-
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="blue darken-1" text @click="clear">
@@ -109,7 +116,8 @@
       </template>
     </v-data-table>
   </v-container>
-</template>
+</template>ü
+
 <script>
 export default {
   data: () => ({
@@ -143,10 +151,13 @@ export default {
       },
       editedItem: {},
     }),
+    //JavaScript'te async, işlevin bir söz döndürmesine izin vermek için işlevden önce yerleştirilen bir anahtar kelimedir .,
+    //JavaScript eşzamanlı bir dil olduğundan, Async işlevleri, söze dayalı kodu eşzamanlıymış gibi yazmamıza izin verir,
+    // ancak kodun eşzamansız çalışmasına izin veren yürütme iş parçacığını engellemez.
     methods: {
       async getCustomerList() {
+        //Axios, JavaScript için vaat edilen tabanlı bir HTTP istemcisidir . Tarayıcıdan HTTP istekleri yapma ve istek ve yanıt verilerinin dönüştürülmesini yönetme yeteneğine sahiptir.
         const response = await this.axios.get("http://localhost:8080/customer");
-        console.log(response);
         this.customers = response.data;
       },
       async getCompanyList() {
@@ -158,7 +169,6 @@ export default {
         this.getCustomerList();
       },
       async updateCustomer() {
-        
         await this.axios.put(
           "http://localhost:8080/customer/" + this.editedItem.id,
           this.editedItem
@@ -175,7 +185,14 @@ export default {
         }
       },
       editItem(item) {
+        //JSON.parse() statik yöntemi , JavaScript değerini veya
+        //dize tarafından açıklanan nesneyi oluşturarak bir JSON
+        //dizesini ayrıştırır . Ortaya çıkan nesne üzerinde döndürülmeden 
+        //önce bir dönüşüm gerçekleştirmek için isteğe bağlı bir canlandırıcı işlevi sağlanabilir.
         this.editedItem = JSON.parse(JSON.stringify(item));
+        //JSON.stringify() statik yöntemi, bir JavaScript değerini bir JSON dizesine dönüştürür , 
+        //bir ikame işlevi belirtilirse isteğe bağlı olarak değerleri değiştirir veya bir ikame dizisi
+        //belirtilirse isteğe bağlı olarak yalnızca belirtilen özellikleri içerir.
         this.dialog = true;
       },
       async deleteCustomer(id) {
