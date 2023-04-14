@@ -7,6 +7,8 @@
       app
       src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
     >
+    <!-- V-list bileşeni bilgileri görüntülemek için kullanılır . Bir avatar, içerik, eylemler, alt başlıklar ve çok daha fazlasını içerebilir.
+       Listeler, içeriği bir koleksiyondaki belirli bir öğeyi tanımlamayı kolaylaştıracak şekilde sunar. Metin ve görüntü gruplarını düzenlemek için tutarlı bir stil sağlarlar. -->
       <v-list dense nav>
         <v-list-item
           v-for="item in items"
