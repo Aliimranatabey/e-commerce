@@ -37,11 +37,10 @@
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
-                    <v-text-field
+                      <v-file-input
                       v-model="editedItem.image"
                       label="IMAGE"
-                    >
-                    </v-text-field>
+                      ></v-file-input>
                   </v-col>
                   </v-row>
                 </v-container>
@@ -74,7 +73,7 @@ export default {
     headers: [
       // { text: "Id", value: "id" },
       { text: "Name", value: "name" },
-      { text: "Url", value: "url" },
+      { text: "Url", value: "url", },
       { text: "Image", value: "image" },
       {
         text: "Actions",
